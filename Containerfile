@@ -1,5 +1,5 @@
 FROM httpd:2.4
-LABEL version=”1.0” description=”this is Containerfile” maintainer=”Red Hat Training <training@redhat.com>”
+LABEL version="1.0" description="this is Containerfile" maintainer="Red Hat Training <training@redhat.com>"
 ENV PORT=8080
 RUN sed -i 's/Listen 80/Listen 8080/' /usr/local/apache2/conf/httpd.conf
 EXPOSE ${PORT}
