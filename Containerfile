@@ -1,3 +1,6 @@
+LABEL version="1.0"
+LABEL description="this is Containerfile"
+MAINTAINER Red Hat Training <training@redhat.com>
 FROM httpd:2.4
 ENV PORT=8080
 RUN sed -i 's/Listen 80/Listen 8080/' /usr/local/apache2/conf/httpd.conf
