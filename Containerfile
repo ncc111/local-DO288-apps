@@ -5,7 +5,8 @@ RUN sed -i 's/Listen 80/Listen 8080/' /usr/local/apache2/conf/httpd.conf
 EXPOSE ${PORT}
 RUN useradd -r -d /usr/local/apache2/htdocs/ -s /sbin/nologin webuser
 RUN chown -R webuser:root /usr/local/apache2/logs/ && chmod 775 /usr/local/apache2/logs/
+RUN touch /usr/local/apache2/logs/aa.log
 USER webuser
 COPY ./public-html/ /usr/local/apache2/htdocs/
-RUN touch /usr/local/apache2/logs/aaa.log
+RUN touch /usr/local/apache2/logs/bb.log
 CMD ["httpd-foreground", "-D", "FOREGROUND", "-c", "User webuser"]
