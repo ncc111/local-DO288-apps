@@ -1,6 +1,6 @@
 FROM quay.io/openshifttest/httpd-24
 LABEL version="1.0" description="this is Containerfile" maintainer="Red Hat Training <training@redhat.com>"
-RUN yum -y install httpd; yum -y install net-tools; yum clean all; 
+yum -y install net-tools; yum clean all; 
 ENV PORT=1080
 RUN sed -i 's/Listen 80/Listen 1080/' /usr/local/apache2/conf/httpd.conf
 EXPOSE ${PORT}
