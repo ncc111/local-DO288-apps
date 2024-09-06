@@ -1,4 +1,4 @@
-FROM centos:8
+FROM ubi8
 LABEL version="1.0" description="this is Containerfile" maintainer="Red Hat Training <training@redhat.com>"
 RUN yum -y install httpd; yum -y install net-tools; yum clean all; 
 ENV PORT=1080
