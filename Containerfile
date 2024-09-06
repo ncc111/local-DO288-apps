@@ -1,7 +1,16 @@
-FROM ubi8
-LABEL version="1.0" description="this is Containerfile" maintainer="Red Hat Training <training@redhat.com>"
-RUN yum -y install httpd; yum -y install net-tools; yum clean all; 
-RUN useradd -r -d /usr/local/apache2/htdocs/ -s /sbin/nologin webuser
-USER webuser
-RUN chgrp -R 0 /var/log/httpd /var/run/httpd /run && chmod -R g=u /var/log/httpd /var/run/httpd /run
+FROM registry.access.redhat.com/ubi8/ubi:8.0
+MAINTAINER Red Hat Training <training@redhat.com>
+# DocumentRoot for Apache
+ENV DOCROOT=/var/www/html
+RUN yum install -y --no-docs --disableplugin=subscription-manager httpd && \
+yum clean all --disableplugin=subscription-manager -y && \
+echo "Hello from the httpd-parent container!" > ${DOCROOT}/index.html
+# Allows child images to inject their own content into DocumentRoot
+ONBUILD COPY src/ ${DOCROOT}/
+EXPOSE 80
+# This stuff is needed to ensure a clean start
+RUN rm -rf /run/httpd && mkdir /run/httpd
+# Run as the root user
+USER root
+# Launch httpd
 CMD /usr/sbin/httpd -DFOREGROUND
