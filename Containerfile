@@ -1,7 +1,7 @@
 FROM httpd:2.4
 LABEL version="1.0" description="this is Containerfile" maintainer="Red Hat Training <training@redhat.com>"
-ENV PORT=888
-RUN sed -i 's/Listen 80/Listen 888/' /usr/local/apache2/conf/httpd.conf
+ENV PORT=8080
+RUN sed -i 's/Listen 80/Listen 8080/' /usr/local/apache2/conf/httpd.conf
 EXPOSE ${PORT}
 RUN yum -y install net-tools
 RUN useradd -r -d /usr/local/apache2/htdocs/ -s /sbin/nologin webuser
