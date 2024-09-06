@@ -1,4 +1,4 @@
-FROM quay.io/app-sre/ubi8-ubi
+FROM quay.io/centos7/httpd-24-centos7
 LABEL version="1.0" description="this is Containerfile" maintainer="Red Hat Training <training@redhat.com>"
 RUN yum -y install httpd; yum -y install net-tools; yum clean all; 
 ENV PORT=1080
