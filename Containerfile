@@ -10,6 +10,7 @@ EXPOSE 8080
 # This stuff is needed to ensure a clean start
 RUN rm -rf /run/httpd && mkdir /run/httpd
 RUN chmod -R g=u /etc/httpd/logs
+RUN echo "ServerName 127.0.0.1" >> /etc/httpd/conf/httpd.conf
 # Run as the root user
 USER root
 # Launch httpd
