@@ -9,7 +9,7 @@ ONBUILD COPY src/ ${DOCROOT}/
 EXPOSE 8080
 # This stuff is needed to ensure a clean start
 RUN rm -rf /run/httpd && mkdir /run/httpd
-RUN chomd -R g=u /etc/httpd/logs
+RUN chmod -R g=u /etc/httpd/logs
 # Run as the root user
 USER root
 # Launch httpd
